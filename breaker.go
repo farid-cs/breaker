@@ -13,13 +13,27 @@ type Rectangle struct {
 	color rl.Color
 }
 
+type Circle struct {
+	radius float32
+	x int32
+	y int32
+	color rl.Color
+}
+
 func main() {
 	plate := Rectangle {
 		200,
-		60,
+		40,
 		WINDOW_WIDTH / 2 - 100,
 		WINDOW_HEIGHT * 3 / 4 - 40,
 		rl.Red,
+	}
+
+	ball := Circle {
+		15.0,
+		WINDOW_WIDTH / 2,
+		WINDOW_HEIGHT / 2,
+		rl.Blue,
 	}
 
 	rl.InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "pingpog")
@@ -41,10 +55,13 @@ func main() {
 			plate.x += 5
 		}
 
+		ball.y += 2
+
 		rl.BeginDrawing()
 
 		rl.ClearBackground(rl.RayWhite)
 		rl.DrawRectangle(plate.x, plate.y, plate.width, plate.height, plate.color)
+		rl.DrawCircle(ball.x, ball.y, ball.radius, ball.color)
 
 		rl.EndDrawing()
 	}
